@@ -7,12 +7,12 @@ class UsersController < ApplicationController
     else
       @response = false
     end
-    render json: {response: @response}
+    return json: {response: @response}
   end
 
   def show
     @user = User.find_by(phone: params[:phone])
-    render json: @user
+    return json: {user: @user}
   end
 
 end
