@@ -15,9 +15,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(phone: params[:phone])
     if @user
-      render json: @user, status: :ok
+      # render json: @user, status: :ok
+      render json: {status: => "true"}
+
     else
-      render json: { errors: @user.errors }, status: :unprocessable_entity
+      # render json: { errors: @user.errors }, status: :unprocessable_entity
+      render json: {status: => "false"}
+
     end
   end
 
