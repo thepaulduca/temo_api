@@ -1,25 +1,28 @@
 class UsersController < ApplicationController
-
   def new
     puts "====================================================================="
-    puts "Hello ya'll"
+    puts "NEW"
     puts "====================================================================="
     render json: {'response' => 'hit the server'}, status: :ok
   end
 
   def create
+    puts "====================================================================="
+    puts "CREATE"
+    puts "====================================================================="
     @user = User.new(username: param[:username], phone: params[:phone])
     if @user.save
-      @response = true
+      render json: @user, status: :create
     else
-      @response = false
+      render json: {'response' => 'you got an error'}
     end
-    return json: {'response' => @response}
   end
 
   def show
+    puts "====================================================================="
+    puts "SHOW"
+    puts "====================================================================="
     @user = User.find_by(phone: params[:phone])
-    return json: {user: @user}
+    render json: @user
   end
-
 end
