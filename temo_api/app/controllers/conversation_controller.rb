@@ -6,9 +6,9 @@ class ConversationController < ApplicationController
     @conversation = Conversation.new(channel_url: params[:channel_url])
     @conversation.users = [@user_1, @user_2]
     if @conversation.save
-      render json: {status: => "true"}
+      render json: {status: "true"}
     else
-      render json: {status: => "false"}
+      render json: {status: "false"}
     end
   end
 
