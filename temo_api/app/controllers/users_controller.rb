@@ -1,20 +1,18 @@
 class UsersController < ApplicationController
+
+
   def create
-    puts "====================================================================="
-    puts "CREATE"
-    puts "====================================================================="
     @user = User.new(user_params)
     if @user.save
-      render json: @user, status: :create
+      # render json: @user, status: :create
+      render json: {status: => "true"}
     else
-      render json: { errors: @user.errors }, status: :unprocessable_entity
+      # render json: { errors: @user.errors }, status: :unprocessable_entity
+      render json: {status: => "false"}
     end
   end
 
   def show
-    puts "====================================================================="
-    puts "SHOW"
-    puts "====================================================================="
     @user = User.find_by(phone: params[:phone])
     if @user
       render json: @user, status: :ok
