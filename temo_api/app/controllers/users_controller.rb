@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   def show
     @contacts = params[:contacts]
     @contact_array = @contacts.select do |contact|
-      normalized_phone_number(phone_number(contact))
-      User.find_by(phone: normalize_phone_number(get_phone_number(contact)))
+      phone_number = normalized_phone_number(phone_number(contact))
+      User.find_by(phone: phone_number)
     end
     render json: @contact_array, status: :ok
   end
