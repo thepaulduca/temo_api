@@ -12,13 +12,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(phone: normalize_phone_number(params[:phone]))
-    if @user
-      render json: @user, status: :ok
-    else
-      render json: { errors: 'Error!' }, status: :unprocessable_entity
-    end
+    @contacts = params[:contacts]
+    @contact_array = @contacts.select {|contact| User.find_by(phone: normalize_phone_number(contact.phoneNumbers[0].number)) }
+    render json: @contact_array, status: :ok
   end
+
+  # def show
+  #   @user = User.find_by(phone: normalize_phone_number(params[:phone]))
+  #   if @user
+  #     render json: @user, status: :ok
+  #   else
+  #     render json: { errors: 'Error!' }, status: :unprocessable_entity
+  #   end
+  # end
 
  private
 
@@ -27,7 +33,7 @@ class UsersController < ApplicationController
  end
 
  def user_params
-   params.require(:user).permit(:phone, :username)
+   params.require(:user).permit(:phone, :username, :users)
  end
 
 end
