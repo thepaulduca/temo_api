@@ -17,7 +17,12 @@ class UsersController < ApplicationController
       phone_number = normalized_phone_number(phone_number(contact))
       User.find_by(phone: phone_number)
     end
+    puts 'contact array inspect'
     puts @contact_array.inspect
+    puts 'contact array itteration'
+    @contact_array.each do |user|
+      puts user
+    end
     render json: @contact_array, status: :ok
   end
 
