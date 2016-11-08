@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def show
     @contacts = params[:contacts]
-    @contact_array = @contacts.select {|contact| User.find_by(phone: normalize_phone_number(contact[phoneNumbers[0]][number])) }
+    @contact_array = @contacts.select {|contact| User.find_by(phone: normalize_phone_number()) }
     render json: @contact_array, status: :ok
   end
 
@@ -28,7 +28,9 @@ class UsersController < ApplicationController
 
  private
 
- def
+ def get_phone_number(contact)
+  contact[phoneNumbers[0][number]]
+ end
 
  def normalize_phone_number(phone_num)
   phone_num.gsub(/[^\d]/,'')
