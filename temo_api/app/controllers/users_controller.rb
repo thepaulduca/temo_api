@@ -20,10 +20,13 @@ class UsersController < ApplicationController
     puts 'contact array inspect'
     puts @contact_array.inspect
     puts 'contact array itteration'
+
+    @my_array = []
     @contact_array.each do |user|
-      puts user
+      puts user['phoneNumbers']
+      @my_array << user['phoneNumbers']
     end
-    render json: @contact_array, status: :ok
+    render json: @my_array, status: :ok
   end
 
 
