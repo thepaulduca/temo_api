@@ -1,4 +1,4 @@
-class ConversationController < ApplicationController
+class ConversationsController < ApplicationController
 
   def create
     puts '--------------------------------------------'
