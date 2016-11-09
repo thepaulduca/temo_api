@@ -26,9 +26,10 @@ class UsersController < ApplicationController
   def show
     @contacts = params[:contacts]
     @contact_array = @contacts.select do |contact|
-
-      phone_number = normalized_phone_number(phone_number(contact))
-      User.find_by(phone: phone_number)
+      if contact["phoneNumbers"]
+        phone_number = normalized_phone_number(phone_number(contact))
+        User.find_by(phone: phone_number)
+      end
     end
     render json: @contact_array, status: :ok
   end
