@@ -1,6 +1,6 @@
-class CreateConversationsUsers < ActiveRecord::Migration[5.0]
+class CreateConversationUsers < ActiveRecord::Migration[5.0]
   def change
-    create_table :conversations_users do |t|
+    create_table :conversation_users do |t|
       t.references :user
       t.references :conversation
 
