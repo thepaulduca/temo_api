@@ -20,6 +20,11 @@ class UsersController < ApplicationController
     render json: @contact_array, status: :ok
   end
 
+  def conversations
+    @user = User.find_by(params[username: :username])
+    render json: {conversations: @user.conversations}
+  end
+
 
  private
 
