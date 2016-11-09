@@ -3,9 +3,10 @@ class ConversationsController < ApplicationController
   def create
     user_one = params[:user_one]
     user_one_augment = get_username(user_one)
-    @user_1 = User.find_by(username: 'paul')
+    @user_1 = User.find_by(username: user_one_augment)
     puts '*' * 100
     puts 'I AM USER ONE'
+    puts user_one_augment
     puts @user_1
     @user_2 = User.find_by(phone: normalized_phone_number(params[:user_two]))
     puts '*' * 100
