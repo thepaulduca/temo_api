@@ -1,7 +1,6 @@
 class ConversationController < ApplicationController
 
   def create
-    @user_1 = User.find_by(username: get_username(params[:userone]))
     puts '--------------------------------------------'
     puts 'params'
     puts params
@@ -10,6 +9,7 @@ class ConversationController < ApplicationController
     puts 'user one instance'
     puts @user_1.inspect
     puts '--------------------------------------------'
+    user_1 = User.find_by(username: get_username(params[:userone]))
     @user_2 = User.find_by(phone: params[:phone])
     @conversation = Conversation.new(channel_url: params[:channel_url])
     @conversation.users = [@user_1, @user_2]

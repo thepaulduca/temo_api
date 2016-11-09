@@ -24,13 +24,10 @@ class UsersController < ApplicationController
  private
 
  def phone_number(contact)
-   puts "Below is a contact in the phone number method"
-   puts contact
   contact["phoneNumbers"][0]["number"]
  end
 
  def normalized_phone_number(phone_number)
-  puts 'below is a phone number within the normalized_phone_number'
   phone_number.gsub(/[^\d]/,'')
  end
 
