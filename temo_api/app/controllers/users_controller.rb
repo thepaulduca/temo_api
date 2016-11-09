@@ -21,7 +21,10 @@ class UsersController < ApplicationController
   end
 
   def conversations
-    @user = User.find_by(params[username: :username])
+    puts 'x' * 100
+    puts params[:phone]
+    @user = User.find_by(phone: params[:phone])
+    puts @user
     render json: {conversations: @user.conversations}
   end
 
