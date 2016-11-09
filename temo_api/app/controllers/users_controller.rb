@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
 
+  def login
+    if @user = User.find_by(phone: params[:phone])
+      render json: @user, status: :ok
+    else
+      render json: { errors: @user.errors }, status: :unprocessable_entity
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -22,16 +30,6 @@ class UsersController < ApplicationController
 
   def conversations
     @user = User.find_by(phone: params[:phone])
-    puts '----------------------'
-    puts @user.inspect
-    puts 'user username'
-    puts @user.username
-    puts 'user conversations'
-    puts @user.conversations
-    puts 'see all convo'
-    @convos = Conversation.all
-    puts @convos
-    puts '----------------------'
     render json: {conversations: @user.conversations}
   end
 
