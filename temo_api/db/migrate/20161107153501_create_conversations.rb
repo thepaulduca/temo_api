@@ -3,7 +3,7 @@ class CreateConversations < ActiveRecord::Migration[5.0]
     create_table :conversations do |t|
       t.string :sentiment
       t.string :channel_url
-      t.references :user
+      t.references :users
 
       t.timestamps
     end
