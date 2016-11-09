@@ -23,8 +23,14 @@ class UsersController < ApplicationController
   def conversations
     @user = User.find_by(phone: params[:phone])
     puts '----------------------'
+    puts @user.inspect
+    puts 'user username'
+    puts @user.username
     puts 'user conversations'
     puts @user.conversations
+    puts 'see all convo'
+    @convos = Conversation.all
+    puts @convos
     puts '----------------------'
     render json: {conversations: @user.conversations}
   end
