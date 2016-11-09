@@ -1,18 +1,10 @@
 class ConversationsController < ApplicationController
 
   def create
-
-    puts '*' * 100
-    puts 'params - conversation - userID'
-    puts params['conversation']['userId']
     @user_1 = User.find_by(phone: params['conversation']['channel_url']['operators'][0]['userId'])
-    puts @user_1
     @user_2 = User.find_by(phone: normalized_phone_number(params[:user_two]))
     @conversation = Conversation.new(channel_url: params[:channel_url][:url])
-    puts '*' * 100
-    puts 'I AM CONVERSATION'
-    puts @conversation
-    @conversation.users = [@user_1, @user_2]
+    @conversation.users << @user_1 << @user_2
     if @conversation.save
       render json: {worked: "true"}
     else
