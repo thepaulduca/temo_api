@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
 
   def login
+
+
     if @user = User.find_by(phone: params[:phone])
       render json: @user, status: :ok
     else
       render json: { errors: @user.errors }, status: :unprocessable_entity
     end
+
+
   end
 
   def create
@@ -22,6 +26,7 @@ class UsersController < ApplicationController
   def show
     @contacts = params[:contacts]
     @contact_array = @contacts.select do |contact|
+
       phone_number = normalized_phone_number(phone_number(contact))
       User.find_by(phone: phone_number)
     end
@@ -37,7 +42,11 @@ class UsersController < ApplicationController
  private
 
  def phone_number(contact)
-  contact["phoneNumbers"][0]["number"]
+  if contact["phoneNumbers"][0]["number"]
+    return contact["phoneNumbers"][0]["number"]
+  else
+    return "0"
+  end
  end
 
  def normalized_phone_number(phone_number)
