@@ -35,8 +35,11 @@ class UsersController < ApplicationController
   end
 
   def conversations
-    @user = User.find_by(phone: params[:phone])
-    render json: {conversations: @user.conversations}
+    if @user = User.find_by(phone: params[:phone])
+      render json: {conversations: @user.conversations}
+    else
+      render json: {conversations: 'errors'}
+    end
   end
 
 
