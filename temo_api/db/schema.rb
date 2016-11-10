@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20161107153557) do
   create_table "conversations", force: :cascade do |t|
     t.string   "sentiment"
     t.string   "channel_url"
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["users_id"], name: "index_conversations_on_users_id", using: :btree
+    t.index ["user_id"], name: "index_conversations_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
