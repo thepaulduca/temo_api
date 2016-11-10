@@ -1,25 +1,19 @@
 class UsersController < ApplicationController
 
   def login
-
-
     if @user = User.find_by(phone: params[:phone])
       render json: @user, status: :ok
     else
       render json: { errors: 'you bad' }, status: :unprocessable_entity
     end
-
-
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       render json: @user, status: :create
-      # render json: {status: "true"}
     else
       render json: { errors: 'you bad'}, status: :unprocessable_entity
-      # render json: {status: "false"}
     end
   end
 
@@ -36,7 +30,7 @@ class UsersController < ApplicationController
 
   def conversations
     if @user = User.find_by(phone: params[:phone])
-      render json: @user.conversations
+      render json: {user: @user, conversations: @user.conversations}
     else
       render json: {conversations: 'errors'}
     end
