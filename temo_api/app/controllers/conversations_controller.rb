@@ -5,8 +5,7 @@ class ConversationsController < ApplicationController
     puts params['conversation']['channel_url']['operators'][0]['userId']
     if @user_1 = User.find_by(phone: params['conversation']['channel_url']['operators'][0]['userId'])
       @user_2 = User.find_by(phone: normalized_phone_number(params[:user_two]))
-      @conversation = Conversation.new(channel_url: params[:channel_url][:url])
-      @conversation.users << @user_1 << @user_2
+      @conversation = Conversation.new(channel_url: params[:channel_url][:url], users: [@user_1, @user_2])
       if @conversation.save
         @conversation.users
         render json: {worked: "true"}
