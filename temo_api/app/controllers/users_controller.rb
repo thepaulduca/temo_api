@@ -34,6 +34,7 @@ class UsersController < ApplicationController
       @conversations = @user.conversations.map do |convo|
         other_user = convo.users.select { |user| user.id != @user.id }
         [convo.channel_url, other_user]
+
       end
 
       render json: {user: @user, conversations: @conversations}
