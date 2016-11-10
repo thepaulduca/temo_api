@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
 
   def create
-    if params['conversation']['channel_url']['url']
+    if params['conversation']['channel_url']
       if @user_1 = User.find_by(phone: params['conversation']['channel_url']['operators'][0]['userId'])
         @user_2 = User.find_by(phone: normalized_phone_number(params[:user_two]))
         @conversation = Conversation.new(channel_url: params[:channel_url][:url], users: [@user_1, @user_2])
