@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if @user = User.find_by(phone: params[:phone])
       render json: @user, status: :ok
     else
-      render json: { errors: @user.errors }, status: :unprocessable_entity
+      render json: { errors: 'you bad' }, status: :unprocessable_entity
     end
 
 
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       render json: @user, status: :create
       # render json: {status: "true"}
     else
-      render json: { errors: 'FUCK OFF'}, status: :unprocessable_entity
+      render json: { errors: 'you bad'}, status: :unprocessable_entity
       # render json: {status: "false"}
     end
   end
