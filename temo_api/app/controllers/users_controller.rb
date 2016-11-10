@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       render json: @user, status: :create
       # render json: {status: "true"}
     else
-      render json: { errors: @user.errors }, status: :unprocessable_entity
+      render json: { errors: 'FUCK OFF'}, status: :unprocessable_entity
       # render json: {status: "false"}
     end
   end
