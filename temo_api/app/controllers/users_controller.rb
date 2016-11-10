@@ -30,7 +30,13 @@ class UsersController < ApplicationController
 
   def conversations
     if @user = User.find_by(phone: params[:phone])
-      render json: {user: @user, conversations: @user.conversations}
+      @user.conversations.each do |convo|
+        users = convo.users
+        @convo_users = users.select do |user|
+          @user.id != user.id
+        end
+      end
+      render json: {user: @user, conversations: @user.conversations, conversationUsers: @convo_users}
     else
       render json: {conversations: 'errors'}
     end
